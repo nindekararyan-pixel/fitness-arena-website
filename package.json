@@ -1,0 +1,24 @@
+{
+  "name": "fitness-arena-website",
+  "version": "1.0.0",
+  "description": "Responsive Gym Website for Fitness Arena — A modern fitness platform showcasing membership plans, class schedules, trainers, and facilities. Built with HTML, CSS, and JavaScript (Node.js + Express optional). Includes responsive design, booking system, and SEO-friendly structure.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nindekararyan-pixel/fitness-arena-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/nindekararyan-pixel/fitness-arena-website/issues"
+  },
+  "homepage": "https://github.com/nindekararyan-pixel/fitness-arena-website#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
