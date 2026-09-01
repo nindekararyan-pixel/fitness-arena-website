@@ -36,9 +36,9 @@ app.get('/api/health', (req, res) => {
     });
 });
 
-// Fallback route
+// Fallback route (SPA support)
 app.get('*', (req, res, next) => {
-    if (req.method !== 'GET' || req.path.startsWith('/api/')) return next();
+    if (req.path.startsWith('/api/')) return next();
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
@@ -50,6 +50,7 @@ async function start() {
     }
 
     try {
+        mongoose.set('strictQuery', false); // recommended for Mongoose 7+
         await mongoose.connect(DB_URI);
         console.log('✅ MongoDB connected');
     } catch (err) {
@@ -61,5 +62,12 @@ async function start() {
         console.log(`🚀 Fitness Arena server running at http://localhost:${PORT}`);
     });
 }
+
+// Graceful shutdown
+process.on('SIGINT', async () => {
+    console.log('\n🛑 Shutting down server...');
+    await mongoose.connection.close();
+    process.exit(0);
+});
 
 start();
