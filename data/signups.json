@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "id": "mtifh2q9xk1zp",
+    "name": "Rohit Deshmukh",
+    "phone": "9012345678",
+    "email": "rohit.d@example.com",
+    "plan": "Quarterly",
+    "signedUpAt": "2026-09-01T09:18:47.902Z"
+  }
+]
