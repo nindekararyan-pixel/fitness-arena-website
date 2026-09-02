@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/nindekararyan-pixel/fitness-arena-website#readme",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.3",
