@@ -20,7 +20,7 @@ async function submitSignup(req, res) {
             return res.status(400).json({ ok: false, error: 'Plan must be Monthly, Quarterly, or Yearly.' });
         }
 
-        // Save to MongoDB
+        // ---------- Save to MongoDB ----------
         const signup = await Signup.create({
             name: name.trim(),
             phone: phone.trim(),
@@ -28,7 +28,7 @@ async function submitSignup(req, res) {
             plan: plan.trim(),
         });
 
-        // Success response
+        // ---------- Success Response ----------
         return res.status(201).json({
             ok: true,
             message: `Welcome to Fitness Arena — ${signup.plan} plan received.`,
