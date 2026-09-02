@@ -9,7 +9,7 @@ async function submitContact(req, res) {
     try {
         const { name, phone, email, message } = req.body || {};
 
-        // Basic validation
+        // ---------- Validation ----------
         if (!isNonEmptyString(name) || !isNonEmptyString(phone) || !isNonEmptyString(email)) {
             return res.status(400).json({ ok: false, error: 'Name, phone, and email are required.' });
         }
