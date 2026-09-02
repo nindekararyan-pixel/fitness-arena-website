@@ -6,6 +6,7 @@ const router = express.Router();
 const { submitBooking } = require('../controllers/bookingController');
 
 // POST /api/bookings — submit a new class booking
-router.post('/', submitBooking);
+// optionalAuth attaches req.userId if a JWT is provided, but does not block guests
+router.post('/', optionalAuth, submitBooking);
 
 module.exports = router;
