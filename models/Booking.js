@@ -5,6 +5,12 @@ const mongoose = require('mongoose');
 
 const bookingSchema = new mongoose.Schema(
     {
+        // Optional — set when the person booking is logged in.
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            default: null,
+        },
         name: {
             type: String,
             required: [true, 'Name is required.'],
