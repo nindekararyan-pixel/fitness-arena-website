@@ -2,236 +2,270 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description"
-        content="Fitness Arena in Wardha — modern training, coached classes, and flexible memberships." />
-    <title>Fitness Arena | Where Strength Meets Discipline</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Arena — Wardha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
-        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <header class="site-header" id="top">
-        <a class="brand" href="#top" aria-label="Fitness Arena home"><span>FA</span> FITNESS <b>ARENA</b></a>
-        <button class="menu-toggle" aria-label="Open menu" aria-expanded="false"><i></i><i></i><i></i></button>
-        <nav class="main-nav" aria-label="Main navigation">
-            <a href="#programs">Programs</a><a href="#membership">Memberships</a><a href="#schedule">Schedule</a><a
-                href="#stories">Stories</a><a href="#contact">Contact</a>
-            <button class="nav-cta open-trial">Free Trial</button>
+
+    <header>
+        <nav class="nav">
+            <div class="brand">FITNESS <span>ARENA</span></div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#membership">Membership</a></li>
+                <li><a href="#classes">Classes</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#stories">Stories</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+            <a href="#membership" class="nav-cta" data-plan="Trial" data-price="1">Book Trial @ ₹1</a>
+            <button class="burger" aria-label="Toggle menu"
+                onclick="document.querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
         </nav>
     </header>
 
-    <main>
-        <section class="hero">
-            <div class="hero-content reveal">
-                <p class="eyebrow"><span></span> WARDHA'S TRAINING DESTINATION</p>
-                <h1>WHERE <em>STRENGTH</em><br />MEETS DISCIPLINE.</h1>
-                <p class="hero-copy">Train with purpose in a high-energy arena built for your strongest self. Expert
-                    coaching. Premium equipment. Real results.</p>
-                <div class="hero-actions"><button class="button button-primary open-join">Join the Arena
-                        <b>→</b></button><button class="button button-ghost open-trial">Book Free Trial</button></div>
-                <div class="hero-metrics">
-                    <div><strong>6+</strong><span>Expert coaches</span></div>
-                    <div><strong>30+</strong><span>Weekly classes</span></div>
-                    <div><strong>4.9<small>/5</small></strong><span>Member rating</span></div>
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="wrap hero-inner">
+            <div class="eyebrow-mark"><span class="bar"></span><span>Wardha, Maharashtra</span></div>
+            <h1>Transform your body.<br>Elevate your <em>life</em>.</h1>
+            <p>Certified trainers, modern equipment, and a training culture built for people who show up. Fitness Arena
+                is where beginners get strong and athletes get stronger.</p>
+            <div class="hero-ctas">
+                <a href="#membership" class="btn btn-primary">Join Now</a>
+                <a href="#membership" class="btn btn-ghost" data-plan="Trial" data-price="1">Book Trial @ ₹1</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="highlights wrap" style="max-width:none; padding:0;">
+        <div class="highlight"><span class="num">01</span>
+            <h4>Certified Trainers</h4>
+        </div>
+        <div class="highlight"><span class="num">02</span>
+            <h4>Modern Equipment</h4>
+        </div>
+        <div class="highlight"><span class="num">03</span>
+            <h4>Flexible Memberships</h4>
+        </div>
+        <div class="highlight"><span class="num">04</span>
+            <h4>Nutrition Guidance</h4>
+        </div>
+    </div>
+
+    <!-- FEATURES -->
+    <section id="features">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="kicker">Why Fitness Arena</span>
+                <h2>Built for real progress</h2>
+                <p>Training, nutrition, and community — designed to work together, not as separate add-ons.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-num">01</span>
+                    <h3>AI Training</h3>
+                    <p>Personalized workout and diet recommendations that adjust as your fitness level changes.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-num">02</span>
+                    <h3>Body Composition Analysis</h3>
+                    <p>Monthly BCA scans track muscle, fat, and progress — not just the number on the scale.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-num">03</span>
+                    <h3>Group Classes</h3>
+                    <p>Yoga, Zumba, and HIIT sessions run daily — see the full <a href="#classes">timetable</a>.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-num">04</span>
+                    <h3>Nutrition</h3>
+                    <p>Recipes and meal tracking that sync with your training plan through the member app.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-num">05</span>
+                    <h3>Community</h3>
+                    <p>Real transformations from real members — see <a href="#stories">success stories</a>.</p>
                 </div>
             </div>
-            <a class="scroll-cue" href="#highlights"><span></span> SCROLL TO EXPLORE</a>
-            <div class="hero-side-text">BUILD YOUR BEST SELF</div>
-        </section>
+        </div>
+    </section>
 
-        <section class="highlights section" id="highlights">
-            <div class="section-label">WHY FITNESS ARENA</div>
-            <div class="highlight-grid">
-                <article class="highlight reveal">
-                    <div class="icon">✦</div>
-                    <h3>Certified Trainers</h3>
-                    <p>Technique-first coaching that keeps every rep focused and effective.</p>
-                </article>
-                <article class="highlight reveal">
-                    <div class="icon">⌁</div>
-                    <h3>Modern Equipment</h3>
-                    <p>From performance racks to cardio zones, every station is ready for you.</p>
-                </article>
-                <article class="highlight reveal">
-                    <div class="icon">◫</div>
-                    <h3>Flexible Memberships</h3>
-                    <p>Choose a plan that fits your pace, goals, and commitment.</p>
-                </article>
-                <article class="highlight reveal">
-                    <div class="icon">✚</div>
-                    <h3>Nutrition Guidance</h3>
-                    <p>Simple, sustainable diet support that fuels results beyond the gym.</p>
-                </article>
+    <!-- MEMBERSHIP -->
+    <section id="membership">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="kicker">Membership Plans</span>
+                <h2>Pick a plan, then show up</h2>
+                <p>Every plan includes full gym floor access. Longer commitments unlock more coaching and nutrition
+                    support.</p>
             </div>
-        </section>
+        </div>
+        <div class="plans">
+            <div class="plan">
+                <h3>Monthly</h3>
+                <div class="price"><sup>₹</sup>999</div>
+                <div class="per">per month</div>
+                <ul>
+                    <li>Full gym floor access</li>
+                    <li>2 group classes / week</li>
+                    <li>Locker & shower access</li>
+                    <li>Free fitness assessment</li>
+                </ul>
+                <a href="#contact" class="btn btn-ghost" data-plan="Monthly" data-price="999">Choose Monthly</a>
+            </div>
+            <div class="plan featured">
+                <h3>Quarterly</h3>
+                <div class="price"><sup>₹</sup>2499</div>
+                <div class="per">per 3 months</div>
+                <ul>
+                    <li>Unlimited group classes</li>
+                    <li>4 personal trainer sessions</li>
+                    <li>Custom diet plan</li>
+                    <li>Locker & shower access</li>
+                    <li>Priority class booking</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary" data-plan="Quarterly" data-price="2499">Choose Quarterly</a>
+            </div>
+            <div class="plan">
+                <h3>Yearly</h3>
+                <div class="price"><sup>₹</sup>8999</div>
+                <div class="per">per year</div>
+                <ul>
+                    <li>Unlimited group classes</li>
+                    <li>Unlimited personal trainer sessions</li>
+                    <li>Custom diet plan, reviewed monthly</li>
+                    <li>Locker & shower access</li>
+                    <li>2 guest passes / month</li>
+                </ul>
+                <a href="#contact" class="btn btn-ghost" data-plan="Yearly" data-price="8999">Choose Yearly</a>
+            </div>
+        </div>
+    </section>
 
-        <section class="programs section-dark" id="programs">
-            <div class="section-heading reveal">
-                <div>
-                    <p class="eyebrow"><span></span> TRAIN YOUR WAY</p>
-                    <h2>FIND YOUR <em>FIGHT.</em></h2>
+    <!-- CLASSES & SCHEDULE -->
+    <section id="classes">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="kicker">Classes & Schedule</span>
+                <h2>Find your session</h2>
+                <p>Four class formats running daily. Filter by type below and reserve your spot online — no walk-in
+                    queue.</p>
+            </div>
+
+            <div class="schedule-tabs">
+                <button class="tab-btn active" data-day="mon">Monday</button>
+                <button class="tab-btn" data-day="tue">Tuesday</button>
+                <button class="tab-btn" data-day="wed">Wednesday</button>
+                <button class="tab-btn" data-day="thu">Thursday</button>
+                <button class="tab-btn" data-day="fri">Friday</button>
+            </div>
+
+            <table class="timetable" id="timetable">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Class</th>
+                        <th>Trainer</th>
+                        <th>Level</th>
+                    </tr>
+                </thead>
+                <tbody id="timetable-body">
+                    <!-- filled by JS -->
+                </tbody>
+            </table>
+
+            <div class="book-row">
+                <a href="#contact" class="btn btn-primary">Book This Class</a>
+                <p>Spots are limited to 18 per session — booking closes 2 hours before class starts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="kicker">Facilities & Gallery</span>
+                <h2>Inside the arena</h2>
+                <p>Swipe through the training floor, then browse every zone below — from the free-weight area to the
+                    locker rooms.</p>
+            </div>
+        </div>
+        <div class="slider" id="gallery-slider">
+            <div class="slide active">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1800&auto=format&fit=crop"
+                    alt="Main training floor with free weights and racks">
+                <div class="slide-caption"><span>Training floor</span>
+                    <h3>Open-plan free-weight zone</h3>
                 </div>
-                <p>Our classes are built around energy, community, and progress—whether it’s your first session or your
-                    hundredth.</p>
             </div>
-            <div class="program-grid">
-                <article class="program-card program-large reveal"><img
-                        src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1200&q=85"
-                        alt="Strength athlete training with barbell" />
-                    <div>
-                        <p>01 / STRENGTH</p>
-                        <h3>Build Power</h3><a href="#schedule">Explore class <b>→</b></a>
-                    </div>
-                </article>
-                <article class="program-card reveal"><img
-                        src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=85"
-                        alt="Woman exercising in a fitness class" />
-                    <div>
-                        <p>02 / HIIT</p>
-                        <h3>Raise the Bar</h3><a href="#schedule">Explore class <b>→</b></a>
-                    </div>
-                </article>
-                <article class="program-card reveal"><img
-                        src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=85"
-                        alt="Gym training area" />
-                    <div>
-                        <p>03 / FUNCTIONAL</p>
-                        <h3>Move Better</h3><a href="#schedule">Explore class <b>→</b></a>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="membership section" id="membership">
-            <div class="section-heading reveal">
-                <div>
-                    <p class="eyebrow"><span></span> MEMBERSHIP</p>
-                    <h2>CHOOSE YOUR<br /><em>COMMITMENT.</em></h2>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1800&auto=format&fit=crop"
+                    alt="Group HIIT class in session">
+                <div class="slide-caption"><span>Group training</span>
+                    <h3>HIIT sessions, six days a week</h3>
                 </div>
-                <p>Every membership opens the door to focused training, a motivating community, and a stronger daily
-                    routine.</p>
             </div>
-            <div class="plans">
-                <article class="plan reveal">
-                    <p class="plan-term">MONTHLY</p>
-                    <p class="price"><small>₹</small>999</p>
-                    <p class="price-note">per month</p>
-                    <ul>
-                        <li>Unlimited gym access</li>
-                        <li>All group classes</li>
-                        <li>Fitness assessment</li>
-                    </ul><button class="plan-select" data-plan="Monthly Membership">Choose monthly <b>→</b></button>
-                </article>
-                <article class="plan featured reveal">
-                    <p class="popular">BEST VALUE</p>
-                    <p class="plan-term">QUARTERLY</p>
-                    <p class="price"><small>₹</small>2499</p>
-                    <p class="price-note">for 3 months</p>
-                    <ul>
-                        <li>Everything in monthly</li>
-                        <li>2 personal trainer sessions</li>
-                        <li>Custom diet guidance</li>
-                    </ul><button class="plan-select" data-plan="Quarterly Membership">Choose quarterly <b>→</b></button>
-                </article>
-                <article class="plan reveal">
-                    <p class="plan-term">YEARLY</p>
-                    <p class="price"><small>₹</small>8999</p>
-                    <p class="price-note">for 12 months</p>
-                    <ul>
-                        <li>Everything in quarterly</li>
-                        <li>Monthly body analysis</li>
-                        <li>Priority class booking</li>
-                    </ul><button class="plan-select" data-plan="Yearly Membership">Choose yearly <b>→</b></button>
-                </article>
-            </div>
-        </section>
-
-        <section class="schedule section-dark" id="schedule">
-            <div class="section-heading reveal">
-                <div>
-                    <p class="eyebrow"><span></span> THIS WEEK AT THE ARENA</p>
-                    <h2>MAKE TIME.<br /><em>MAKE PROGRESS.</em></h2>
-                </div><button class="button button-primary open-trial">Book a Class <b>→</b></button>
-            </div>
-            <div class="table-wrap reveal">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>CLASS</th>
-                            <th>MON</th>
-                            <th>TUE</th>
-                            <th>WED</th>
-                            <th>THU</th>
-                            <th>FRI</th>
-                            <th>SAT</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><b>YOGA</b><span>Flexibility & balance</span></td>
-                            <td>6:30 AM</td>
-                            <td></td>
-                            <td>6:30 AM</td>
-                            <td></td>
-                            <td>6:30 AM</td>
-                            <td>8:00 AM</td>
-                        </tr>
-                        <tr>
-                            <td><b>ZUMBA</b><span>Dance fitness</span></td>
-                            <td></td>
-                            <td>7:00 PM</td>
-                            <td></td>
-                            <td>7:00 PM</td>
-                            <td></td>
-                            <td>9:00 AM</td>
-                        </tr>
-                        <tr>
-                            <td><b>HIIT</b><span>High intensity</span></td>
-                            <td>7:00 PM</td>
-                            <td></td>
-                            <td>7:00 PM</td>
-                            <td></td>
-                            <td>7:00 PM</td>
-                            <td>10:00 AM</td>
-                        </tr>
-                        <tr>
-                            <td><b>STRENGTH</b><span>Power & conditioning</span></td>
-                            <td></td>
-                            <td>6:00 PM</td>
-                            <td></td>
-                            <td>6:00 PM</td>
-                            <td></td>
-                            <td>11:00 AM</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section class="gallery section" aria-label="Fitness Arena facilities">
-            <div class="section-heading reveal">
-                <div>
-                    <p class="eyebrow"><span></span> YOUR ARENA</p>
-                    <h2>BUILT FOR<br /><em>THE WORK.</em></h2>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=1800&auto=format&fit=crop"
+                    alt="Row of treadmills and cardio machines">
+                <div class="slide-caption"><span>Cardio zone</span>
+                    <h3>Modern machines, always maintained</h3>
                 </div>
-                <p>Premium spaces that let you arrive focused and leave accomplished.</p>
             </div>
-            <div class="gallery-grid reveal"><img class="tall"
-                    src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=85"
-                    alt="Fitness Arena gym floor" /><img
-                    src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=800&q=85"
-                    alt="Training equipment" /><img
-                    src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=800&q=85"
-                    alt="Personal training workout" />
-                <div class="gallery-tag">2,500 <small>sq. ft. of focus</small></div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1800&auto=format&fit=crop"
+                    alt="Clean locker room interior">
+                <div class="slide-caption"><span>Locker rooms</span>
+                    <h3>Clean, secure, always stocked</h3>
+                </div>
             </div>
-        </section>
+            <div class="slider-dots">
+                <button class="active" data-i="0" aria-label="Slide 1"></button>
+                <button data-i="1" aria-label="Slide 2"></button>
+                <button data-i="2" aria-label="Slide 3"></button>
+                <button data-i="3" aria-label="Slide 4"></button>
+            </div>
+            <div class="slider-controls">
+                <button id="slide-prev" aria-label="Previous slide">&#8249;</button>
+                <button id="slide-next" aria-label="Next slide">&#8250;</button>
+            </div>
+        </div>
+
+        <div class="gallery-grid">
+            <a href="#" class="g-wide g-tall"><img
+                    src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop"
+                    alt="Main training floor with free weights"></a>
+            <a href="#"><img
+                    src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=800&auto=format&fit=crop"
+                    alt="Row of treadmills and cardio machines"></a>
+            <a href="#"><img
+                    src="https://images.unsplash.com/photo-1584735175315-9d5df23860e6?q=80&w=800&auto=format&fit=crop"
+                    alt="Dumbbell rack close up"></a>
+            <a href="#" class="g-wide"><img
+                    src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1200&auto=format&fit=crop"
+                    alt="Group HIIT class in session"></a>
+            <a href="#"><img
+                    src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=800&auto=format&fit=crop"
+                    alt="Locker room interior"></a>
+            <a href="#" class="g-tall"><img
+                    src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=800&auto=format&fit=crop"
+                    alt="Strength training zone with barbells"></a>
+            <a href="#"><img
+                    src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=800&auto=format&fit=crop"
+                    alt="Yoga and stretching zone"></a>
+        </div>
+    </section>
 
     <!-- STORIES -->
     <section id="stories">
@@ -281,76 +315,161 @@
                     </div>
                 </div>
             </div>
-            <div class="story-copy reveal">
-                <p class="eyebrow"><span></span> MEMBER STORY</p>
-                <blockquote>“I walked in wanting to change my body. I found the confidence to change my whole routine.”
-                </blockquote>
-                <p class="member">— ANKIT J., MEMBER SINCE 2023</p><a href="#contact" class="text-link">Read more
-                    success stories <b>→</b></a>
-            </div>
-        </section>
 
-        <section class="journal section">
-            <div class="section-heading reveal">
-                <div>
-                    <p class="eyebrow"><span></span> THE ARENA JOURNAL</p>
-                    <h2>TRAIN SMARTER.<br /><em>LIVE STRONGER.</em></h2>
-                </div><a href="#contact" class="text-link">View all articles <b>→</b></a>
-            </div>
-            <div class="article-grid">
-                <article class="article reveal"><span>TRAINING · 5 MIN READ</span>
-                    <h3>How to build a workout routine that you’ll actually keep.</h3><a href="#contact">Read article
-                        →</a>
-                </article>
-                <article class="article reveal"><span>NUTRITION · 4 MIN READ</span>
-                    <h3>Five protein-packed staples for a busy weekly meal plan.</h3><a href="#contact">Read article
-                        →</a>
-                </article>
-                <article class="article reveal"><span>MINDSET · 3 MIN READ</span>
-                    <h3>Motivation fades. Here’s what to use instead.</h3><a href="#contact">Read article →</a>
-                </article>
-            </div>
-        </section>
-    </main>
-
-    <footer id="contact">
-        <div class="footer-main">
-            <div class="footer-brand"><a class="brand" href="#top"><span>FA</span> FITNESS <b>ARENA</b></a>
-                <h2>YOUR STRONGEST<br />SELF STARTS <em>NOW.</em></h2><button
-                    class="button button-primary open-trial">Book Free Trial <b>→</b></button>
-            </div>
-            <div class="contact-block">
-                <p class="footer-label">COME TRAIN WITH US</p>
-                <address>Fitness Arena<br />Wardha, Maharashtra</address><a href="tel:+919090639005">+91
-                    9090639005</a><a href="mailto:info@fitnessarena.com">info@fitnessarena.com</a><a class="map-link"
-                    href="https://maps.google.com/?q=Wardha,Maharashtra" target="_blank" rel="noreferrer">Get directions
-                    ↗</a>
+            <div class="transform-panel">
+                <div class="transform-img">
+                    <span class="split-label before">Before</span>
+                    <span class="split-label after">After</span>
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=900&auto=format&fit=crop"
+                        alt="Transformation training progress at the gym">
+                </div>
+                <h3 style="font-size:18px; color:var(--white); margin-bottom:10px;">12-week transformation program</h3>
+                <p style="color:var(--silver); font-size:14.5px;">Structured strength and nutrition coaching for members
+                    who want a measurable result, not just a workout plan.</p>
             </div>
         </div>
-        <div class="footer-bottom"><span>© 2026 FITNESS ARENA. ALL RIGHTS RESERVED.</span><span>Instagram &nbsp;
-                Facebook &nbsp; YouTube</span></div>
+    </section>
+
+    <!-- BLOG -->
+    <section id="blog">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="kicker">Blog / Fitness Tips</span>
+                <h2>Training notes</h2>
+                <p>Short, practical reads on workouts, diet, and staying consistent.</p>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=700&auto=format&fit=crop"
+                        alt="Person doing a barbell squat">
+                    <div class="blog-body">
+                        <span class="blog-meta">Strength</span>
+                        <h3>Three lifts worth mastering before anything else</h3>
+                        <p>Squat, hinge, and press form the base of every strength program — here's how to build them
+                            correctly.</p>
+                        <a href="#" class="read">Read article</a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=700&auto=format&fit=crop"
+                        alt="Healthy meal prep bowls">
+                    <div class="blog-body">
+                        <span class="blog-meta">Nutrition</span>
+                        <h3>Eating enough protein without overthinking it</h3>
+                        <p>A simple, sustainable way to hit your daily protein target without tracking every gram.</p>
+                        <a href="#" class="read">Read article</a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?q=80&w=700&auto=format&fit=crop"
+                        alt="Person tying running shoes before workout">
+                    <div class="blog-body">
+                        <span class="blog-meta">Motivation</span>
+                        <h3>What to do on the days you don't want to train</h3>
+                        <p>Consistency beats intensity. A few rules for showing up when motivation runs out.</p>
+                        <a href="#" class="read">Read article</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="wrap contact-grid">
+            <div class="contact-info">
+                <span class="kicker">Contact</span>
+                <h2 style="font-size:clamp(28px,3.4vw,38px); color:var(--white);">Come train with us</h2>
+                <dl>
+                    <div>
+                        <dt>Address</dt>
+                        <dd>Fitness Arena, Wardha, Maharashtra</dd>
+                    </div>
+                    <div>
+                        <dt>Phone</dt>
+                        <dd><a href="tel:+919090639005">+91 90906 39005</a></dd>
+                    </div>
+                    <div>
+                        <dt>Email</dt>
+                        <dd><a href="mailto:info@fitnessarena.com">info@fitnessarena.com</a></dd>
+                    </div>
+                    <div>
+                        <dt>Hours</dt>
+                        <dd>Mon–Sat, 5:00 AM – 10:00 PM</dd>
+                    </div>
+                </dl>
+                <div class="social-row">
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="Facebook">FB</a>
+                    <a href="#" aria-label="YouTube">YT</a>
+                </div>
+                <iframe class="map-embed" style="margin-top:34px;"
+                    src="https://www.google.com/maps?q=Wardha,Maharashtra&output=embed" loading="lazy"
+                    title="Fitness Arena location map"></iframe>
+            </div>
+
+            <form id="contact-form">
+                <div class="field">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" required>
+                </div>
+                <div class="field">
+                    <label for="phone">Phone</label>
+                    <input id="phone" name="phone" type="tel" required>
+                </div>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" required>
+                </div>
+                <div class="field">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us what you're training for..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="border:none; cursor:pointer;">Send Message</button>
+                <p id="form-msg" style="display:none; color:var(--silver); font-size:13px; margin-top:14px;"></p>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap footer-row">
+            <div class="brand" style="font-size:17px;">FITNESS <span>ARENA</span></div>
+            <p>&copy; 2026 Fitness Arena, Wardha. All rights reserved.</p>
+        </div>
     </footer>
 
-    <div class="modal" id="booking-modal" aria-hidden="true" role="dialog" aria-modal="true"
-        aria-labelledby="modal-title">
-        <div class="modal-card"><button class="modal-close" aria-label="Close booking form">×</button>
-            <p class="eyebrow"><span></span> FITNESS ARENA</p>
-            <h2 id="modal-title">START YOUR <em>JOURNEY.</em></h2>
-            <p id="modal-text">Claim your free trial and we’ll find the best session for you.</p>
-            <form id="booking-form"><label>Full name<input required name="name"
-                        placeholder="Your name" /></label><label>Phone number<input required name="phone" type="tel"
-                        placeholder="+91" /></label><label>Interested in<select name="interest">
-                        <option>Free trial session</option>
-                        <option>Monthly Membership</option>
-                        <option>Quarterly Membership</option>
-                        <option>Yearly Membership</option>
-                        <option>Group classes</option>
-                    </select></label><button class="button button-primary" type="submit">Send my request
-                    <b>→</b></button></form>
-            <p class="form-success" aria-live="polite"></p>
+    <!-- CHECKOUT MODAL -->
+    <div class="checkout-overlay" id="checkout-overlay" aria-hidden="true">
+        <div class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+            <button class="checkout-close" id="checkout-close" aria-label="Close checkout">&times;</button>
+            <span class="kicker">Join Fitness Arena</span>
+            <h3 id="checkout-title">Confirm your details</h3>
+            <p class="checkout-plan-line">Plan: <strong id="checkout-plan-name">Monthly</strong> — <strong
+                    id="checkout-plan-price">₹999</strong></p>
+
+            <form id="checkout-form">
+                <div class="field">
+                    <label for="checkout-name">Name</label>
+                    <input id="checkout-name" name="name" type="text" required>
+                </div>
+                <div class="field">
+                    <label for="checkout-phone">Phone</label>
+                    <input id="checkout-phone" name="phone" type="tel" required>
+                </div>
+                <div class="field">
+                    <label for="checkout-email">Email</label>
+                    <input id="checkout-email" name="email" type="email" required>
+                </div>
+                <button type="submit" class="btn btn-primary"
+                    style="width:100%; border:none; cursor:pointer; margin-top:8px;">Pay & Join</button>
+                <p id="checkout-msg" style="display:none; color:var(--silver); font-size:13px; margin-top:14px;"></p>
+            </form>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="js/script.js" defer></script>
+
 </body>
 
 </html>
