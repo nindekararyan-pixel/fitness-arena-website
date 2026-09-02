@@ -9,7 +9,7 @@ async function submitSignup(req, res) {
     try {
         const { name, phone, email, plan } = req.body || {};
 
-        // Basic validation
+        // ---------- Validation ----------
         if (!isNonEmptyString(name) || !isNonEmptyString(phone) || !isNonEmptyString(email)) {
             return res.status(400).json({ ok: false, error: 'Name, phone, and email are required.' });
         }
