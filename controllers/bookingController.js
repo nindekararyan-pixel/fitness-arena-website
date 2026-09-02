@@ -14,8 +14,9 @@ async function submitBooking(req, res) {
             return res.status(400).json({ ok: false, error: 'Name, phone, and class are required.' });
         }
 
-        // Save to MongoDB
+        // ---------- Save to MongoDB ----------
         const booking = await Booking.create({
+            user: req.userId || null, // optional link to logged-in user
             name: name.trim(),
             phone: phone.trim(),
             email: isNonEmptyString(email) ? email.trim() : '',
@@ -24,7 +25,7 @@ async function submitBooking(req, res) {
             className: className.trim(),
         });
 
-        // Success response
+        // ---------- Success Response ----------
         return res.status(201).json({
             ok: true,
             message: `You're booked for ${booking.className}${booking.day ? ' on ' + booking.day : ''}.`,
