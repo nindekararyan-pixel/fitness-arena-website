@@ -17,7 +17,7 @@ async function submitContact(req, res) {
             return res.status(400).json({ ok: false, error: "That email address doesn't look right." });
         }
 
-        // Save to MongoDB
+        // ---------- Save to MongoDB ----------
         const contact = await Contact.create({
             name: name.trim(),
             phone: phone.trim(),
@@ -25,7 +25,7 @@ async function submitContact(req, res) {
             message: isNonEmptyString(message) ? message.trim() : '',
         });
 
-        // Success response
+        // ---------- Success Response ----------
         return res.status(201).json({
             ok: true,
             message: "Thanks — we'll get back to you within a day.",
