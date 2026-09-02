@@ -1,6 +1,51 @@
 # fitness-arena-website
 
 Responsive Gym Website for Fitness Arena — A modern fitness platform showcasing membership plans, class schedules, trainers, and facilities. Built with HTML, CSS, and JavaScript (Node.js + Express optional). Includes responsive design, booking system, and SEO-friendly structure.
+
+Static gym website served by an Express backend, backed by MongoDB (via
+Mongoose) for the contact form, class bookings, and membership sign-ups.
+
+## Run it
+
+1. **Get a MongoDB instance.** Either:
+   - Install MongoDB locally and run `mongod`, or
+   - Create a free cluster at [MongoDB Atlas](https://www.mongodb.com/atlas)
+     and copy its connection string.
+
+2. **Get Razorpay API keys.** Sign up at
+   [dashboard.razorpay.com](https://dashboard.razorpay.com/app/keys) and
+   grab your test-mode Key ID and Key Secret.
+
+3. **Set your environment variables:**
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Then edit `.env` and set:
+   - `DB_URI` — your MongoDB connection string (local or Atlas, see comments in the file)
+   - `JWT_SECRET` — any long random string (generate one with `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`)
+   - `RAZORPAY_KEY_ID` / `RAZORPAY_KEY_SECRET` — from your Razorpay dashboard
+
+4. **Install and start:**
+
+   ```bash
+   npm install
+   npm start
+   ```
+
+   Then open [http://localhost:3000](http://localhost:3000)
+
+   If `DB_URI` is missing or unreachable, the server logs a clear error and
+   exits instead of starting in a broken state. If `JWT_SECRET` or the
+   Razorpay keys are missing, it starts anyway but logs a warning — the
+   affected routes (`/api/users/*`, `/api/payments/*`) will return clear
+   errors until those are set. Check `GET /api/health` at any time to
+   confirm the `db` field reads `"connected"`.
+
+## Project structure
+
+```tree
 fitness-arena-website/
 │
 ├── server.js               Entry point — connects to MongoDB, wires up routes, starts listening
