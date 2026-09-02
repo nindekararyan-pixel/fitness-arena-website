@@ -9,7 +9,7 @@ async function submitBooking(req, res) {
     try {
         const { name, phone, email, day, time, className } = req.body || {};
 
-        // Basic validation
+        // ---------- Validation ----------
         if (!isNonEmptyString(name) || !isNonEmptyString(phone) || !isNonEmptyString(className)) {
             return res.status(400).json({ ok: false, error: 'Name, phone, and class are required.' });
         }
