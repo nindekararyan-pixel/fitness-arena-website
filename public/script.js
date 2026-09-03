@@ -247,3 +247,27 @@ contactForm.addEventListener('submit', async (e) => {
         }
     });
 })();
+
+// Scroll-triggered fade-ins for section headings and cards
+(function () {
+    const revealEls = document.querySelectorAll('.reveal');
+    if (!revealEls.length) return;
+
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        // No IntersectionObserver support, or the user prefers reduced motion —
+        // just show everything immediately rather than leaving it invisible.
+        revealEls.forEach(el => el.classList.add('visible'));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => observer.observe(el));
+})();
