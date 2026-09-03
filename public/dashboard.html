@@ -6,343 +6,239 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard — Fitness Arena</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        .dash-wrap {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 140px 32px 100px;
-        }
-
-        .dash-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: 20px;
-            margin-bottom: 48px;
-            flex-wrap: wrap;
-        }
-
-        .dash-header h1 {
-            font-size: clamp(28px, 4vw, 40px);
-            color: var(--white);
-        }
-
-        .dash-header p {
-            color: var(--silver);
-            margin-top: 8px;
-        }
-
-        .btn-small {
-            padding: 10px 20px;
-            font-size: 12.5px;
-        }
-
-        .auth-toggle {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 28px;
-        }
-
-        .auth-toggle button {
-            background: transparent;
-            border: 1px solid var(--line);
-            color: var(--silver);
-            font-family: 'Oswald';
-            font-size: 13px;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            padding: 10px 22px;
-            cursor: pointer;
-            transition: all .2s ease;
-        }
-
-        .auth-toggle button.active {
-            border-color: var(--red);
-            color: var(--white);
-            background: rgba(214, 22, 30, 0.12);
-        }
-
-        .auth-card {
-            max-width: 400px;
-            border: 1px solid var(--line);
-            padding: 36px;
-            background: var(--black-2);
-        }
-
-        .auth-error {
-            color: var(--red);
-            font-size: 13px;
-            margin-top: 14px;
-            display: none;
-        }
-
-        .dash-section {
-            margin-bottom: 56px;
-        }
-
-        .dash-section h2 {
-            font-size: 20px;
-            color: var(--white);
-            text-transform: none;
-            font-family: 'Roboto';
-            font-weight: 700;
-            margin-bottom: 18px;
-        }
-
-        .dash-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-
-        .dash-table th {
-            text-align: left;
-            font-family: 'Oswald';
-            font-weight: 500;
-            letter-spacing: 0.03em;
-            color: var(--silver);
-            padding: 12px 14px;
-            border-bottom: 1px solid var(--line);
-            font-size: 12px;
-            text-transform: uppercase;
-        }
-
-        .dash-table td {
-            padding: 14px;
-            border-bottom: 1px solid var(--line);
-            color: var(--silver-light);
-        }
-
-        .status-pill {
-            display: inline-block;
-            padding: 3px 10px;
-            font-size: 11px;
-            font-family: 'Oswald';
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            border: 1px solid var(--silver);
-            color: var(--silver);
-        }
-
-        .status-pill.paid {
-            border-color: var(--red);
-            color: var(--red);
-        }
-
-        .empty-row td {
-            color: var(--silver);
-            font-style: italic;
-        }
-
-        #admin-section {
-            border-top: 1px solid var(--line);
-            padding-top: 48px;
-            margin-top: 16px;
-        }
-
-        .admin-badge {
-            display: inline-block;
-            background: var(--red);
-            color: var(--white);
-            font-family: 'Oswald';
-            font-size: 11px;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            padding: 3px 10px;
-            margin-left: 10px;
-        }
-
-        [hidden] {
-            display: none !important;
-        }
-    </style>
 </head>
 
-<body>
+<body class="dash-body">
 
-    <header>
-        <nav class="nav">
-            <div class="brand"><a href="index.html" style="color:inherit;">FITNESS <span>ARENA</span></a></div>
-            <ul class="nav-links">
-                <li><a href="index.html#membership">Membership</a></li>
-                <li><a href="index.html#classes">Classes</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
-            <button class="nav-cta" id="logout-btn" hidden style="border:none; cursor:pointer;">Log Out</button>
-            <button class="burger" aria-label="Toggle menu"
-                onclick="document.querySelector('.nav-links').classList.toggle('open')"><span></span><span></span><span></span></button>
-        </nav>
-    </header>
+    <!-- ---------- auth screen ---------- -->
+    <div class="auth-shell" id="authShell">
+        <div class="auth-card">
+            <a href="index.html" class="logo" style="margin-bottom:22px; display:flex;"><span class="logo-dot"
+                    aria-hidden="true"></span>Fitness Arena</a>
 
-    <main class="dash-wrap">
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Log in</button>
+                <button class="auth-tab" data-tab="register">Register</button>
+            </div>
 
-        <!-- LOGGED OUT VIEW -->
-        <section id="auth-view">
-            <div class="dash-header">
-                <div>
-                    <h1>Member Dashboard</h1>
-                    <p>Log in to view your bookings, payments, and account details.</p>
+            <form class="auth-form active" id="loginForm">
+                <div class="field">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
                 </div>
-            </div>
-
-            <div class="auth-toggle">
-                <button id="tab-login" class="active">Log In</button>
-                <button id="tab-register">Register</button>
-            </div>
-
-            <div class="auth-card">
-                <form id="login-form">
-                    <div class="field">
-                        <label for="login-email">Email</label>
-                        <input id="login-email" type="email" required>
-                    </div>
-                    <div class="field">
-                        <label for="login-password">Password</label>
-                        <input id="login-password" type="password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width:100%; border:none; cursor:pointer;">Log
-                        In</button>
-                    <p class="auth-error" id="login-error"></p>
-                </form>
-
-                <form id="register-form" hidden>
-                    <div class="field">
-                        <label for="register-name">Name</label>
-                        <input id="register-name" type="text" required>
-                    </div>
-                    <div class="field">
-                        <label for="register-phone">Phone</label>
-                        <input id="register-phone" type="tel" required>
-                    </div>
-                    <div class="field">
-                        <label for="register-email">Email</label>
-                        <input id="register-email" type="email" required>
-                    </div>
-                    <div class="field">
-                        <label for="register-password">Password</label>
-                        <input id="register-password" type="password" minlength="8" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary"
-                        style="width:100%; border:none; cursor:pointer;">Create Account</button>
-                    <p class="auth-error" id="register-error"></p>
-                </form>
-            </div>
-        </section>
-
-        <!-- LOGGED IN VIEW -->
-        <section id="dashboard-view" hidden>
-            <div class="dash-header">
-                <div>
-                    <h1 id="welcome-name">Welcome back</h1>
-                    <p id="welcome-email"></p>
+                <div class="field">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
                 </div>
+                <button type="submit" class="btn btn-primary btn-block">Log in</button>
+                <p class="form-note" id="loginNote"></p>
+            </form>
+
+            <form class="auth-form" id="registerForm">
+                <div class="field">
+                    <label for="regName">Name</label>
+                    <input type="text" id="regName" required>
+                </div>
+                <div class="field">
+                    <label for="regEmail">Email</label>
+                    <input type="email" id="regEmail" required>
+                </div>
+                <div class="field">
+                    <label for="regPhone">Phone (optional)</label>
+                    <input type="tel" id="regPhone">
+                </div>
+                <div class="field">
+                    <label for="regPassword">Password</label>
+                    <input type="password" id="regPassword" required minlength="6">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Create account</button>
+                <p class="form-note" id="registerNote"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ---------- dashboard shell ---------- -->
+    <div class="dash-shell" id="dashShell">
+        <aside class="dash-sidebar">
+            <a href="index.html" class="logo"><span class="logo-dot" aria-hidden="true"></span>Fitness Arena</a>
+
+            <nav class="dash-nav" id="dashNav">
+                <button data-view="overview" class="active">Overview</button>
+                <button data-view="bookings">My bookings</button>
+                <button data-view="payments">My payments</button>
+                <button data-view="admin" id="adminNavBtn" style="display:none;">Admin panel</button>
+            </nav>
+
+            <div class="dash-user">
+                <strong id="dashUserName">—</strong>
+                <span id="dashUserEmail">—</span>
+                <button id="logoutBtn">Log out</button>
             </div>
+        </aside>
 
-            <div class="dash-section">
-                <h2>Your bookings</h2>
-                <table class="dash-table">
-                    <thead>
-                        <tr>
-                            <th>Class</th>
-                            <th>Day</th>
-                            <th>Time</th>
-                            <th>Booked</th>
-                        </tr>
-                    </thead>
-                    <tbody id="bookings-body">
-                        <tr class="empty-row">
-                            <td colspan="4">Loading...</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <main class="dash-main">
 
-            <div class="dash-section">
-                <h2>Your payments</h2>
-                <table class="dash-table">
-                    <thead>
-                        <tr>
-                            <th>Plan</th>
-                            <th>Amount</th>
-                            <th>Status</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody id="payments-body">
-                        <tr class="empty-row">
-                            <td colspan="4">Loading...</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- ADMIN ONLY -->
-            <section id="admin-section" hidden>
-                <h2 style="font-size:24px; font-family:'Oswald'; text-transform:uppercase; color:var(--white);">
-                    Admin<span class="admin-badge">Admin</span></h2>
-                <p style="color:var(--silver); margin-bottom:28px;">Visible only to accounts with role: admin.</p>
-
-                <div class="dash-section">
-                    <h2>All members (<span id="members-count">0</span>)</h2>
-                    <table class="dash-table">
+            <!-- Overview -->
+            <section class="dash-view active" id="view-overview">
+                <div class="dash-head">
+                    <h2>Welcome back</h2>
+                    <p id="overviewGreeting">Here's what's on your account.</p>
+                </div>
+                <div class="summary-row">
+                    <div class="summary-card">
+                        <div class="val" id="sumBookings">0</div>
+                        <div class="lbl">Total bookings</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="val" id="sumPayments">0</div>
+                        <div class="lbl">Total payments</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="val" id="sumPaid">₹0</div>
+                        <div class="lbl">Total paid</div>
+                    </div>
+                </div>
+                <div class="dash-panel">
+                    <h3>Recent bookings</h3>
+                    <table class="data-table" id="overviewBookingsTable">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Role</th>
-                            </tr>
-                        </thead>
-                        <tbody id="members-body"></tbody>
-                    </table>
-                </div>
-
-                <div class="dash-section">
-                    <h2>All bookings (<span id="all-bookings-count">0</span>)</h2>
-                    <table class="dash-table">
-                        <thead>
-                            <tr>
-                                <th>Member</th>
                                 <th>Class</th>
                                 <th>Day</th>
                                 <th>Time</th>
                             </tr>
                         </thead>
-                        <tbody id="all-bookings-body"></tbody>
+                        <tbody></tbody>
                     </table>
+                    <p class="empty-state" id="overviewBookingsEmpty" style="display:none;">No bookings yet — book a
+                        class from the homepage timetable.</p>
                 </div>
+            </section>
 
-                <div class="dash-section">
-                    <h2>All payments (<span id="all-payments-count">0</span>)</h2>
-                    <table class="dash-table">
+            <!-- My bookings -->
+            <section class="dash-view" id="view-bookings">
+                <div class="dash-head">
+                    <h2>My bookings</h2>
+                    <p>Every class you've booked, most recent first.</p>
+                </div>
+                <div class="dash-panel">
+                    <table class="data-table" id="bookingsTable">
                         <thead>
                             <tr>
-                                <th>Member</th>
+                                <th>Class</th>
+                                <th>Day</th>
+                                <th>Time</th>
+                                <th>Booked on</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <p class="empty-state" id="bookingsEmpty" style="display:none;">No bookings yet.</p>
+                </div>
+            </section>
+
+            <!-- My payments -->
+            <section class="dash-view" id="view-payments">
+                <div class="dash-head">
+                    <h2>My payments</h2>
+                    <p>Membership payments linked to your account.</p>
+                </div>
+                <div class="dash-panel">
+                    <table class="data-table" id="paymentsTable">
+                        <thead>
+                            <tr>
+                                <th>Plan</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <p class="empty-state" id="paymentsEmpty" style="display:none;">No payments yet.</p>
+                </div>
+            </section>
+
+            <!-- Admin panel -->
+            <section class="dash-view" id="view-admin">
+                <div class="dash-head">
+                    <h2>Admin panel</h2>
+                    <p>All members, bookings and payments across the gym.</p>
+                </div>
+
+                <div class="summary-row">
+                    <div class="summary-card">
+                        <div class="val" id="adminMemberCount">0</div>
+                        <div class="lbl">Total members</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="val" id="adminBookingCount">0</div>
+                        <div class="lbl">Total bookings</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="val" id="adminRevenue">₹0</div>
+                        <div class="lbl">Total revenue</div>
+                    </div>
+                </div>
+
+                <div class="dash-panel">
+                    <h3>Members</h3>
+                    <table class="data-table" id="adminMembersTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Joined</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <p class="empty-state" id="adminMembersEmpty" style="display:none;">No members yet.</p>
+                </div>
+
+                <div class="dash-panel">
+                    <h3>All bookings</h3>
+                    <table class="data-table" id="adminBookingsTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Class</th>
+                                <th>Day</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <p class="empty-state" id="adminBookingsEmpty" style="display:none;">No bookings yet.</p>
+                </div>
+
+                <div class="dash-panel">
+                    <h3>All payments</h3>
+                    <table class="data-table" id="adminPaymentsTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
                                 <th>Plan</th>
                                 <th>Amount</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody id="all-payments-body"></tbody>
+                        <tbody></tbody>
                     </table>
+                    <p class="empty-state" id="adminPaymentsEmpty" style="display:none;">No payments yet.</p>
                 </div>
             </section>
-        </section>
 
-    </main>
+        </main>
+    </div>
 
-    <footer>
-        <div class="wrap footer-row">
-            <div class="brand" style="font-size:17px;">FITNESS <span>ARENA</span></div>
-            <p>&copy; 2026 Fitness Arena, Wardha. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="dashboard.js" defer></script>
+    <script src="dashboard.js"></script>
 </body>
 
 </html>
