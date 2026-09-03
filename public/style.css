@@ -826,6 +826,13 @@ section {
     border: 1px solid var(--line);
     display: flex;
     flex-direction: column;
+    transition: transform .3s ease, border-color .3s ease;
+    overflow: hidden;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--red);
 }
 
 .blog-card img {
