@@ -75,6 +75,38 @@ button:focus-visible {
     }
 }
 
+/* ---------- SCROLL REVEAL ---------- */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-1.visible {
+    transition-delay: .08s;
+}
+
+.reveal-2.visible {
+    transition-delay: .16s;
+}
+
+.reveal-3.visible {
+    transition-delay: .24s;
+}
+
+.reveal-4.visible {
+    transition-delay: .32s;
+}
+
+.reveal-5.visible {
+    transition-delay: .4s;
+}
+
 /* ---------- NAV ---------- */
 header {
     position: fixed;
@@ -304,6 +336,12 @@ header {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    transition: background .25s ease, transform .25s ease;
+}
+
+.highlight:hover {
+    background: rgba(214, 22, 30, 0.08);
+    transform: translateY(-3px);
 }
 
 .highlight:last-child {
@@ -315,6 +353,11 @@ header {
     color: var(--red);
     font-size: 13px;
     letter-spacing: 0.06em;
+    transition: transform .25s ease;
+}
+
+.highlight:hover .num {
+    transform: translateX(3px);
 }
 
 .highlight h4 {
@@ -373,6 +416,12 @@ section {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    transition: transform .25s ease, background .25s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    background: #0e0e0f;
 }
 
 .feature-num {
@@ -380,6 +429,11 @@ section {
     color: var(--red);
     font-size: 13px;
     letter-spacing: 0.06em;
+    transition: transform .25s ease;
+}
+
+.feature-card:hover .feature-num {
+    transform: translateX(3px);
 }
 
 .feature-card h3 {
@@ -425,6 +479,12 @@ section {
     display: flex;
     flex-direction: column;
     position: relative;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.plan:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .plan.featured {
@@ -737,6 +797,12 @@ section {
     padding: 32px;
     margin-bottom: 20px;
     position: relative;
+    transition: border-color .25s ease, transform .25s ease;
+}
+
+.story-card:hover {
+    border-color: var(--red);
+    transform: translateX(4px);
 }
 
 .story-card .quote {
@@ -839,6 +905,11 @@ section {
     height: 200px;
     width: 100%;
     object-fit: cover;
+    transition: transform .5s ease;
+}
+
+.blog-card:hover img {
+    transform: scale(1.05);
 }
 
 .blog-body {
