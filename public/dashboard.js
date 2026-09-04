@@ -52,7 +52,10 @@ loginForm.addEventListener('submit', async (e) => {
     loginError.style.display = 'none';
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
+    const submitBtn = loginForm.querySelector('button[type="submit"]');
 
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Logging in...';
     try {
         const res = await fetch('/api/users/login', {
             method: 'POST',
@@ -67,6 +70,9 @@ loginForm.addEventListener('submit', async (e) => {
     } catch (err) {
         loginError.textContent = err.message;
         loginError.style.display = 'block';
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Log In';
     }
 });
 
@@ -80,7 +86,10 @@ registerForm.addEventListener('submit', async (e) => {
         email: document.getElementById('register-email').value,
         password: document.getElementById('register-password').value,
     };
+    const submitBtn = registerForm.querySelector('button[type="submit"]');
 
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Creating account...';
     try {
         const res = await fetch('/api/users/register', {
             method: 'POST',
@@ -95,6 +104,9 @@ registerForm.addEventListener('submit', async (e) => {
     } catch (err) {
         registerError.textContent = err.message;
         registerError.style.display = 'block';
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Create Account';
     }
 });
 
@@ -114,10 +126,35 @@ function formatAmount(paise) {
     return '₹' + (paise / 100).toFixed(0);
 }
 
+function getInitials(name) {
+    if (!name) return 'FA';
+    const parts = name.trim().split(/\s+/);
+    const initials = parts.slice(0, 2).map(p => p[0]).join('');
+    return initials.toUpperCase() || 'FA';
+}
+
+function statusPillClass(status) {
+    if (status === 'paid') return 'paid';
+    if (status === 'failed') return 'failed';
+    return 'created';
+}
+
+function emptyStateRow(colspan, message, ctaText, ctaHref) {
+    return `
+    <tr><td colspan="${colspan}">
+      <div class="empty-state">
+        <div class="mark">—</div>
+        <p>${message}</p>
+        ${ctaText ? `<a href="${ctaHref}">${ctaText}</a>` : ''}
+      </div>
+    </td></tr>
+  `;
+}
+
 function renderBookings(bookings) {
     const body = document.getElementById('bookings-body');
     if (!bookings.length) {
-        body.innerHTML = '<tr class="empty-row"><td colspan="4">No bookings yet — book a class from the timetable.</td></tr>';
+        body.innerHTML = emptyStateRow(4, "You haven't booked a class yet.", 'Browse the timetable →', 'index.html#classes');
         return;
     }
     body.innerHTML = bookings.map(b => `
@@ -133,14 +170,14 @@ function renderBookings(bookings) {
 function renderPayments(payments) {
     const body = document.getElementById('payments-body');
     if (!payments.length) {
-        body.innerHTML = '<tr class="empty-row"><td colspan="4">No payments yet.</td></tr>';
+        body.innerHTML = emptyStateRow(4, 'No payments yet.', 'View membership plans →', 'index.html#membership');
         return;
     }
     body.innerHTML = payments.map(p => `
     <tr>
       <td>${p.plan}</td>
       <td>${formatAmount(p.amount)}</td>
-      <td><span class="status-pill ${p.status === 'paid' ? 'paid' : ''}">${p.status}</span></td>
+      <td><span class="status-pill ${statusPillClass(p.status)}">${p.status}</span></td>
       <td>${formatDate(p.createdAt)}</td>
     </tr>
   `).join('');
@@ -150,21 +187,36 @@ function renderMembers(members) {
     document.getElementById('members-count').textContent = members.length;
     document.getElementById('members-body').innerHTML = members.map(m => `
     <tr><td>${m.name}</td><td>${m.email}</td><td>${m.phone}</td><td>${m.role}</td></tr>
-  `).join('') || '<tr class="empty-row"><td colspan="4">No members yet.</td></tr>';
+  `).join('') || emptyStateRow(4, 'No members yet.', null, null);
 }
 
 function renderAllBookings(bookings) {
     document.getElementById('all-bookings-count').textContent = bookings.length;
     document.getElementById('all-bookings-body').innerHTML = bookings.map(b => `
     <tr><td>${b.user ? b.user.name : b.name + ' (guest)'}</td><td>${b.className}</td><td>${b.day || '—'}</td><td>${b.time || '—'}</td></tr>
-  `).join('') || '<tr class="empty-row"><td colspan="4">No bookings yet.</td></tr>';
+  `).join('') || emptyStateRow(4, 'No bookings yet.', null, null);
 }
 
 function renderAllPayments(payments) {
     document.getElementById('all-payments-count').textContent = payments.length;
     document.getElementById('all-payments-body').innerHTML = payments.map(p => `
-    <tr><td>${p.user ? p.user.name : p.name + ' (guest)'}</td><td>${p.plan}</td><td>${formatAmount(p.amount)}</td><td><span class="status-pill ${p.status === 'paid' ? 'paid' : ''}">${p.status}</span></td></tr>
-  `).join('') || '<tr class="empty-row"><td colspan="4">No payments yet.</td></tr>';
+    <tr><td>${p.user ? p.user.name : p.name + ' (guest)'}</td><td>${p.plan}</td><td>${formatAmount(p.amount)}</td><td><span class="status-pill ${statusPillClass(p.status)}">${p.status}</span></td></tr>
+  `).join('') || emptyStateRow(4, 'No payments yet.', null, null);
+
+    const revenue = payments.filter(p => p.status === 'paid').reduce((sum, p) => sum + p.amount, 0);
+    document.getElementById('admin-revenue').textContent = formatAmount(revenue);
+}
+
+function renderStats(bookings, payments) {
+    document.getElementById('stat-bookings').textContent = bookings.length;
+    document.getElementById('stat-payments').textContent = payments.length;
+
+    const totalPaid = payments.filter(p => p.status === 'paid').reduce((sum, p) => sum + p.amount, 0);
+    document.getElementById('stat-spent').textContent = formatAmount(totalPaid);
+
+    const paidPayments = payments.filter(p => p.status === 'paid').sort((a, b) => new Date(b.paidAt || b.createdAt) - new Date(a.paidAt || a.createdAt));
+    const currentPlan = paidPayments.length ? paidPayments[0].plan : '—';
+    document.getElementById('stat-plan').textContent = currentPlan;
 }
 
 // ---------- load dashboard ----------
@@ -180,10 +232,21 @@ async function loadDashboard() {
         const data = await res.json();
         if (!res.ok || !data.ok) throw new Error(data.error || 'Could not load dashboard.');
 
-        document.getElementById('welcome-name').textContent = 'Welcome back, ' + data.user.name;
+        document.getElementById('avatar-initials').textContent = getInitials(data.user.name);
+        document.getElementById('welcome-name').childNodes[0].textContent = 'Welcome back, ' + data.user.name;
         document.getElementById('welcome-email').textContent = data.user.email;
+
+        const roleTag = document.getElementById('role-tag');
+        if (data.user.role === 'admin') {
+            roleTag.hidden = false;
+            roleTag.textContent = 'Admin';
+        } else {
+            roleTag.hidden = true;
+        }
+
         renderBookings(data.bookings);
         renderPayments(data.payments);
+        renderStats(data.bookings, data.payments);
         showDashboardView();
 
         const adminSection = document.getElementById('admin-section');
