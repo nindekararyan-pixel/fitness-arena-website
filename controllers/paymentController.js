@@ -44,6 +44,7 @@ async function createOrder(req, res) {
             });
         }
 
+        // Amount mapping from Payment model (in INR → convert to paise)
         const amountInPaise = Payment.PLAN_AMOUNTS_INR[plan] * 100;
         if (!amountInPaise) {
             return res.status(400).json({ ok: false, error: 'Invalid plan amount mapping.' });
@@ -79,7 +80,7 @@ async function createOrder(req, res) {
             paymentRecordId: payment._id,
         });
     } catch (err) {
-        console.error('❌ Error creating Razorpay order:', err.message);
+        console.error('❌ Error creating Razorpay order:', err); // log full error object
         return res.status(502).json({ ok: false, error: 'Could not start the payment. Please try again shortly.' });
     }
 }
@@ -127,7 +128,7 @@ async function verifyPayment(req, res) {
 
         return res.json({ ok: true, message: 'Payment verified — welcome to Fitness Arena!', payment });
     } catch (err) {
-        console.error('❌ Error verifying payment:', err.message);
+        console.error('❌ Error verifying payment:', err); // log full error object
         return res.status(500).json({ ok: false, error: 'Something went wrong verifying your payment.' });
     }
 }
