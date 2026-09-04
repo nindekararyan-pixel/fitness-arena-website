@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fitness Arena Checkout</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+
+<body>
+    <h1>Choose Your Plan</h1>
+    <button onclick="startPayment('Monthly')">Pay Monthly</button>
+    <button onclick="startPayment('Quarterly')">Pay Quarterly</button>
+    <button onclick="startPayment('Yearly')">Pay Yearly</button>
+
+    <script>
+        async function startPayment(plan) {
+            try {
+                // Call your backend to create order
+                const response = await fetch("http://localhost:3000/api/payments/create-order", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name: "Test User",
+                        phone: "9999999999",
+                        email: "test@example.com",
+                        plan: plan
+                    })
+                });
+
+                const data = await response.json();
+                if (!data.ok) {
+                    alert("Error: " + data.error);
+                    return;
+                }
+
+                // Razorpay options
+                const options = {
+                    key: data.keyId, // from backend
+                    amount: data.amount,
+                    currency: data.currency,
+                    name: "Fitness Arena",
+                    description: plan + " Membership",
+                    order_id: data.orderId,
+                    handler: async function (response) {
+                        // Send verification request to backend
+                        const verifyRes = await fetch("http://localhost:3000/api/payments/verify", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify(response)
+                        });
+                        const verifyData = await verifyRes.json();
+                        alert(verifyData.message || "Payment processed");
+                    },
+                    prefill: {
+                        name: "Test User",
+                        email: "test@example.com",
+                        contact: "9999999999"
+                    },
+                    theme: { color: "#D6161E" }
+                };
+
+                const rzp = new Razorpay(options);
+                rzp.open();
+            } catch (err) {
+                console.error("Checkout error:", err);
+                alert("Something went wrong starting payment.");
+            }
+        }
+    </script>
+</body>
+
+</html>

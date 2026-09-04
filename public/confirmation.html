@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Status - Fitness Arena</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Roboto:wght@400&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: #111113;
+            color: #f4f4f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .status-container {
+            background: #1c1c1f;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            width: 400px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            color: #D6161E;
+            margin-bottom: 20px;
+        }
+
+        .progress {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+
+        .step {
+            flex: 1;
+            position: relative;
+            text-align: center;
+        }
+
+        .circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #444;
+            margin: 0 auto;
+            line-height: 30px;
+            color: #fff;
+            font-size: 14px;
+            transition: background .3s ease;
+        }
+
+        .active .circle {
+            background: #D6161E;
+        }
+
+        .line {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            width: 100%;
+            height: 4px;
+            background: #444;
+            z-index: -1;
+        }
+
+        .active .line {
+            background: #D6161E;
+        }
+
+        .message {
+            font-size: 1rem;
+            color: #b7bcc4;
+            margin-top: 20px;
+        }
+
+        .success {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .failed {
+            color: #f44336;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="status-container">
+        <h1>Payment Status</h1>
+        <div class="progress">
+            <div class="step active">
+                <div class="circle">1</div>
+                <div class="line"></div>
+                <p>Created</p>
+            </div>
+            <div class="step">
+                <div class="circle">2</div>
+                <div class="line"></div>
+                <p>Paid</p>
+            </div>
+            <div class="step">
+                <div class="circle">3</div>
+                <p>Complete</p>
+            </div>
+        </div>
+        <div class="message">Waiting for payment confirmation...</div>
+    </div>
+
+    <script>
+        // Example: update status dynamically
+        function updateStatus(status) {
+            const steps = document.querySelectorAll('.step');
+            const message = document.querySelector('.message');
+
+            if (status === 'created') {
+                steps[0].classList.add('active');
+                message.textContent = "Order created. Awaiting payment...";
+            } else if (status === 'paid') {
+                steps[1].classList.add('active');
+                message.textContent = "✅ Payment successful! Welcome to Fitness Arena.";
+                message.classList.add('success');
+            } else if (status === 'failed') {
+                steps[1].classList.add('active');
+                message.textContent = "❌ Payment failed. Please try again.";
+                message.classList.add('failed');
+            }
+        }
+
+        // Simulate backend response
+        setTimeout(() => updateStatus('paid'), 3000);
+    </script>
+</body>
+
+</html>
