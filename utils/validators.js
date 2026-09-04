@@ -1,8 +1,8 @@
 // utils/validators.js
 // Common validation helpers
 
-function isNonEmptyString(value) {
-    return typeof value === 'string' && value.trim().length > 0;
+function isNonEmptyString(str) {
+    return typeof str === 'string' && str.trim().length > 0;
 }
 
 function looksLikeEmail(value) {
