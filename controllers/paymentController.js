@@ -45,6 +45,9 @@ async function createOrder(req, res) {
         }
 
         const amountInPaise = Payment.PLAN_AMOUNTS_INR[plan] * 100;
+        if (!amountInPaise) {
+            return res.status(400).json({ ok: false, error: 'Invalid plan amount mapping.' });
+        }
 
         // Create Razorpay order
         const order = await razorpay.orders.create({
